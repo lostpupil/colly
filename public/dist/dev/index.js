@@ -110,13 +110,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var root = document.querySelector('.app');
-var Dashboard = {
+var Card = {
   view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h1', "Hello Dash")]);
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.card', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h1', "Hello Card")]);
+  }
+};
+var List = {
+  view: function view(vnode) {
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card)]);
+  }
+};
+var Panel = {
+  view: function view(vnode) {
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.panel', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List)]);
   }
 };
 __WEBPACK_IMPORTED_MODULE_1_mithril___default.a.route(root, "/", {
-  "/": Dashboard
+  "/": Panel
 });
 
 /***/ }),
@@ -178,7 +188,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".panel {\n  font-size: 12px;\n  background: #1c6ca0;\n  height: 100%;\n  overflow: scroll;\n  white-space: nowrap;\n  overflow-y: hidden; }\n\n.list {\n  display: inline-block;\n  background: #aaaba7;\n  width: 12.5%;\n  max-height: 100%;\n  margin: 10px;\n  padding-right: 5px;\n  padding-left: 5px;\n  overflow-y: scroll; }\n\n.card {\n  display: block;\n  background: #efeeeb;\n  margin: 10px;\n  padding: 5px;\n  max-height: 300px; }\n", ""]);
 
 // exports
 

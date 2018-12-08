@@ -1,0 +1,25 @@
+.panel {
+  font-size: 12px;
+  background: #1c6ca0;
+  height: 100%;
+  overflow:scroll;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+.list {
+  display: inline-block;
+  background: #aaaba7;
+  width: 12.5%;
+  max-height: 100%;
+  margin: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
+  overflow-y: scroll;
+}
+.card {
+  display: block;
+  background: #efeeeb;
+  margin: 10px;
+  padding: 5px;
+  max-height: 300px;
+}
