@@ -117,26 +117,65 @@ var Data = {
   current_pvt: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()(),
   current_week_start: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week'),
   current_week_end: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().endOf('week'),
-  lists: [__WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(1, 'day'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(2, 'day'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(3, 'day'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(4, 'day'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(5, 'day'), __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(6, 'day')]
+  lists: [{
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week'),
+    items: [{
+      title: "Hello",
+      content: "This is a card."
+    }]
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(1, 'day'),
+    items: [{
+      title: "Hello",
+      content: "This is a card 3."
+    }]
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(2, 'day'),
+    items: [{
+      title: "Hello",
+      content: "This is a card 1."
+    }]
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(3, 'day'),
+    items: [{
+      title: "Hello",
+      content: "This is a card 2."
+    }]
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(4, 'day'),
+    items: []
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(5, 'day'),
+    items: []
+  }, {
+    time: __WEBPACK_IMPORTED_MODULE_2_dayjs___default()().startOf('week').add(6, 'day'),
+    items: []
+  }]
 };
-console.log(Data.current_week_end.diff(Data.current_week_start, 'day'));
 var Card = {
+  oninit: function oninit(vnode) {
+    console.log(vnode.attrs);
+  },
   view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.card', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('p', "Hello Card"), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('p', "Hello Card")]);
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.card', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h4', vnode.attrs.item.title), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('p', vnode.attrs.item.content)]);
   }
 };
 var List = {
   oninit: function oninit(vnode) {// console.log(vnode.attrs.time.format('YYYY/MM/DD'))
   },
   view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-head', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h3', vnode.attrs.time.format('YYYY/MM/DD'))]), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-body', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card)])]);
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-head', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h3', vnode.attrs.list.time.format('YYYY/MM/DD'))]), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-body', vnode.attrs.list.items.map(function (item) {
+      return __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card, {
+        item: item
+      });
+    }))]);
   }
 };
 var Panel = {
   view: function view(vnode) {
     return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.panel', Data.lists.map(function (list) {
       return __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List, {
-        time: list
+        list: list
       });
     }));
   }
@@ -204,7 +243,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".panel {\n  font-size: 12px;\n  background: #1c6ca0;\n  height: 100%;\n  overflow: scroll;\n  white-space: nowrap;\n  overflow-y: hidden; }\n\n.list-wrapper {\n  display: inline-block;\n  width: 12.5%;\n  padding-right: 5px;\n  padding-left: 5px; }\n  .list-wrapper .list-head {\n    margin: 10px;\n    background: #aaaba7;\n    text-align: center;\n    height: 3rem; }\n  .list-wrapper .list-body {\n    background: #aaaba7;\n    height: 80%;\n    margin: 10px;\n    overflow-y: scroll; }\n\n.card {\n  display: block;\n  background: #efeeeb;\n  margin: 10px;\n  padding: 5px;\n  max-height: 200px; }\n", ""]);
+exports.push([module.i, ".panel {\n  font-size: 12px;\n  background: #1c6ca0;\n  height: 100%;\n  overflow: scroll;\n  white-space: nowrap;\n  overflow-y: hidden; }\n\n.list-wrapper {\n  display: inline-block;\n  width: 12.5%;\n  padding-right: 5px;\n  padding-left: 5px; }\n  .list-wrapper .list-head {\n    margin: 10px;\n    background: #aaaba7;\n    text-align: center;\n    height: 3rem; }\n  .list-wrapper .list-body {\n    background: #aaaba7;\n    height: 80%;\n    margin: 10px;\n    overflow-y: scroll; }\n\n.card {\n  display: block;\n  background: #efeeeb;\n  margin: 10px;\n  padding: 5px;\n  max-height: 200px;\n  border-radius: 5px; }\n", ""]);
 
 // exports
 
