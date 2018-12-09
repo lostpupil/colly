@@ -126,14 +126,18 @@ var Card = {
   }
 };
 var List = {
+  oninit: function oninit(vnode) {// console.log(vnode.attrs.time.format('YYYY/MM/DD'))
+  },
   view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-head', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('p', 'Head')]), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-body', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card)])]);
+    return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-head', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()('h3', vnode.attrs.time.format('YYYY/MM/DD'))]), __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.list-body', [__WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card), __WEBPACK_IMPORTED_MODULE_1_mithril___default()(Card)])]);
   }
 };
 var Panel = {
   view: function view(vnode) {
     return __WEBPACK_IMPORTED_MODULE_1_mithril___default()('div.panel', Data.lists.map(function (list) {
-      return __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List);
+      return __WEBPACK_IMPORTED_MODULE_1_mithril___default()(List, {
+        time: list
+      });
     }));
   }
 };

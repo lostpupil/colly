@@ -28,10 +28,13 @@ const Card = {
 }
 
 const List = {
+    oninit: (vnode) => {
+        // console.log(vnode.attrs.time.format('YYYY/MM/DD'))
+    },
     view: function(vnode) {
         return m('div.list-wrapper', [
             m('div.list-head', [
-                m('p', 'Head')
+                m('h3', vnode.attrs.time.format('YYYY/MM/DD'))
             ]),
             m('div.list-body', [
                 m(Card),
@@ -43,9 +46,11 @@ const List = {
 
 const Panel = {
     view: function(vnode) {
-      return m('div.panel', Data.lists.map((list) => {
-        return m(List)
-      }))
+        return m('div.panel', Data.lists.map((list) => {
+            return m(List, {
+                time: list
+            })
+        }))
     }
 }
 m.route(root, "/", {
