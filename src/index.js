@@ -1,3 +1,4 @@
+import 'bulma/css/bulma.css'
 import './index.scss'
 import m from 'mithril'
 import djs from 'dayjs'
@@ -33,7 +34,46 @@ var Data = {
         }]
     }, {
         time: djs().startOf('week').add(4, 'day'),
-        items: []
+        items: [{
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }, {
+            title: "Hello",
+            content: "This is a card 1."
+        }]
     }, {
         time: djs().startOf('week').add(5, 'day'),
         items: []
@@ -44,9 +84,7 @@ var Data = {
 }
 
 const Card = {
-    oninit: (vnode) => {
-        console.log(vnode.attrs)
-    },
+    oninit: (vnode) => {},
     view: function(vnode) {
         return m('div.card', [
             m('h4', vnode.attrs.item.title),
@@ -56,19 +94,21 @@ const Card = {
 }
 
 const List = {
-    oninit: (vnode) => {
-        // console.log(vnode.attrs.time.format('YYYY/MM/DD'))
-    },
+    oninit: (vnode) => {},
     view: function(vnode) {
         return m('div.list-wrapper', [
-            m('div.list-head', [
+            m('div.list-header', [
                 m('h3', vnode.attrs.list.time.format('YYYY/MM/DD'))
             ]),
-            m('div.list-body', vnode.attrs.list.items.map((item) => {
-                return m(Card, {
-                    item: item
-                })
-            }))
+            m('div.list-body', [
+                vnode.attrs.list.items.map((item) => {
+                    return m(Card, {
+                        item: item
+                    })
+                }),
+                m('button.button.is-fullwidth.is-small', "+")
+            ]),
+            
         ])
     }
 }
