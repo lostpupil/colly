@@ -2,11 +2,18 @@ import 'bulma/css/bulma.css'
 import './index.scss'
 import m from 'mithril'
 import djs from 'dayjs'
+import _ from 'lodash'
+
 const root = document.querySelector('.app')
 
 var Data = {
     addModal: {
-        display: false
+        key: '',
+        display: false,
+        item: {
+            title: '',
+            content: ''
+        }
     },
     cardModal: {
         display: false
@@ -16,77 +23,26 @@ var Data = {
     current_week_end: djs().endOf('week'),
     lists: [{
         time: djs().startOf('week').format('YYYY/MM/DD'),
-        items: [{
-            title: "Hello",
-            content: "This is a card."
-        }]
+        items: []
     }, {
         time: djs().startOf('week').add(1, 'day').format('YYYY/MM/DD'),
-        items: [{
-            title: "Hello",
-            content: "This is a card 3."
-        }]
+        items: []
     }, {
         time: djs().startOf('week').add(2, 'day').format('YYYY/MM/DD'),
-        items: [{
-            title: "Hello",
-            content: "This is a card 1."
-        }]
+        items: []
     }, {
         time: djs().startOf('week').add(3, 'day').format('YYYY/MM/DD'),
-        items: [{
-            title: "Hello",
-            content: "This is a card 2."
-        }]
+        items: []
     }, {
         time: djs().startOf('week').add(4, 'day').format('YYYY/MM/DD'),
-        items: [{
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }, {
-            title: "Hello",
-            content: "This is a card 1."
-        }]
+        items: []
     }, {
         time: djs().startOf('week').add(5, 'day').format('YYYY/MM/DD'),
         items: []
     }, {
         time: djs().startOf('week').add(6, 'day').format('YYYY/MM/DD'),
         items: []
-    }, ]
+    }]
 }
 
 const Panel = {
@@ -118,6 +74,7 @@ const List = {
                 m('button.button.is-fullwidth.is-small', {
                     onclick: () => {
                         Data.addModal.display = true
+                        Data.addModal.key = vnode.attrs.list.time
                     }
                 }, "+")
             ]),
@@ -145,19 +102,55 @@ const AddModel = {
             m(".modal-card", [
                 m("header.modal-card-head", [
                     m("p.modal-card-title",
-                        "Modal title"
+                        Data.addModal.key
                     ),
                     m("button.delete[aria-label='close']", {
                         onclick: () => {
                             Data.addModal.display = false
+                            Data.addModal.key = ''
                         }
                     })
                 ]),
-                m("section.modal-card-body", ),
-                m("footer.modal-card-foot", [
-                    m("button.button.is-success",
-                        "Save changes"
+                m("section.modal-card-body", [
+                    m(".field",
+                        m(".control",
+                            m("input.input[placeholder='title'][type='text']", {
+                                value: Data.addModal.item.title,
+                                oninput: (e) => {
+                                    Data.addModal.item.title = e.target.value
+                                }
+                            })
+                        )
                     ),
+                    m(".field",
+                        m(".control",
+                            m("input.input[placeholder='content'][type='text']", {
+                                value: Data.addModal.item.content,
+                                oninput: (e) => {
+                                    Data.addModal.item.content = e.target.value
+                                }
+                            })
+                        )
+                    ),
+                ]),
+                m("footer.modal-card-foot", [
+                    m("button.button.is-success", {
+                        onclick: () => {
+                            console.log(Data.addModal.key)
+                            console.log(Data.addModal.item)
+                            let result = _.find(Data.lists, {
+                                time: Data.addModal.key
+                            })
+                            result.items.push(Data.addModal.item)
+                            // clear the data
+                            Data.addModal.display = false
+                            Data.addModal.key = ''
+                            Data.addModal.item = {
+                                title: '',
+                                content: ''
+                            }
+                        }
+                    }, "Add")
                 ])
             ])
         ])
