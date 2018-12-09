@@ -605,35 +605,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var root = document.querySelector('.app');
 var Data = {
+  addModel: {
+    display: false
+  },
+  CardModel: {
+    display: false
+  },
   current_pvt: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()(),
   current_week_start: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week'),
   current_week_end: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().endOf('week'),
   lists: [{
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').format('YYYY/MM/DD'),
     items: [{
       title: "Hello",
       content: "This is a card."
     }]
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(1, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(1, 'day').format('YYYY/MM/DD'),
     items: [{
       title: "Hello",
       content: "This is a card 3."
     }]
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(2, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(2, 'day').format('YYYY/MM/DD'),
     items: [{
       title: "Hello",
       content: "This is a card 1."
     }]
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(3, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(3, 'day').format('YYYY/MM/DD'),
     items: [{
       title: "Hello",
       content: "This is a card 2."
     }]
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(4, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(4, 'day').format('YYYY/MM/DD'),
     items: [{
       title: "Hello",
       content: "This is a card 1."
@@ -675,12 +681,35 @@ var Data = {
       content: "This is a card 1."
     }]
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(5, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(5, 'day').format('YYYY/MM/DD'),
     items: []
   }, {
-    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(6, 'day'),
+    time: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()().startOf('week').add(6, 'day').format('YYYY/MM/DD'),
     items: []
   }]
+};
+var Panel = {
+  view: function view(vnode) {
+    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.panel', [Data.lists.map(function (list) {
+      return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(List, {
+        list: list
+      });
+    }), __WEBPACK_IMPORTED_MODULE_2_mithril___default()(AddModel)]);
+  }
+};
+var List = {
+  oninit: function oninit(vnode) {},
+  view: function view(vnode) {
+    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-header', [__WEBPACK_IMPORTED_MODULE_2_mithril___default()('h3', vnode.attrs.list.time)]), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-body', [vnode.attrs.list.items.map(function (item) {
+      return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(Card, {
+        item: item
+      });
+    }), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('button.button.is-fullwidth.is-small', {
+      onclick: function onclick() {
+        Data.addModel.display = true;
+      }
+    }, "+")])]);
+  }
 };
 var Card = {
   oninit: function oninit(vnode) {},
@@ -688,25 +717,18 @@ var Card = {
     return __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.card', [__WEBPACK_IMPORTED_MODULE_2_mithril___default()('h4', vnode.attrs.item.title), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('p', vnode.attrs.item.content)]);
   }
 };
-var List = {
-  oninit: function oninit(vnode) {},
+var AddModel = {
   view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-wrapper', [__WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-header', [__WEBPACK_IMPORTED_MODULE_2_mithril___default()('h3', vnode.attrs.list.time.format('YYYY/MM/DD'))]), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.list-body', [vnode.attrs.list.items.map(function (item) {
-      return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(Card, {
-        item: item
-      });
-    }), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('button.button.is-fullwidth.is-small', "+")])]);
+    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal", {
+      class: "".concat(Data.addModel.display == true ? 'is-active' : '')
+    }, [__WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-background"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-card", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("header.modal-card-head", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("p.modal-card-title", "Modal title"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.delete[aria-label='close']", {
+      onclick: function onclick() {
+        Data.addModel.display = false;
+      }
+    })]), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("section.modal-card-body"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("footer.modal-card-foot", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.button.is-success", "Save changes")])])]);
   }
 };
-var Panel = {
-  view: function view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()('div.panel', Data.lists.map(function (list) {
-      return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(List, {
-        list: list
-      });
-    }));
-  }
-};
+var CardModel = {};
 __WEBPACK_IMPORTED_MODULE_2_mithril___default.a.route(root, "/", {
   "/": Panel
 });
