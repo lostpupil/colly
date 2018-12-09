@@ -5,10 +5,10 @@ import djs from 'dayjs'
 const root = document.querySelector('.app')
 
 var Data = {
-    addModel: {
+    addModal: {
         display: false
     },
-    CardModel: {
+    cardModal: {
         display: false
     },
     current_pvt: djs(),
@@ -117,7 +117,7 @@ const List = {
                 }),
                 m('button.button.is-fullwidth.is-small', {
                     onclick: () => {
-                        Data.addModel.display = true
+                        Data.addModal.display = true
                     }
                 }, "+")
             ]),
@@ -139,7 +139,7 @@ const Card = {
 const AddModel = {
     view: function(vnode) {
         return m(".modal", {
-            class: `${Data.addModel.display == true ? 'is-active' : ''}`
+            class: `${Data.addModal.display == true ? 'is-active' : ''}`
         }, [
             m(".modal-background"),
             m(".modal-card", [
@@ -149,7 +149,7 @@ const AddModel = {
                     ),
                     m("button.delete[aria-label='close']", {
                         onclick: () => {
-                            Data.addModel.display = false
+                            Data.addModal.display = false
                         }
                     })
                 ]),
@@ -165,7 +165,31 @@ const AddModel = {
 }
 
 const CardModel = {
-
+    view: function(vnode) {
+        return m(".modal", {
+            class: `${Data.cardModal.display == true ? 'is-active' : ''}`
+        }, [
+            m(".modal-background"),
+            m(".modal-card", [
+                m("header.modal-card-head", [
+                    m("p.modal-card-title",
+                        "Modal title"
+                    ),
+                    m("button.delete[aria-label='close']", {
+                        onclick: () => {
+                            Data.cardModal.display = false
+                        }
+                    })
+                ]),
+                m("section.modal-card-body", ),
+                m("footer.modal-card-foot", [
+                    m("button.button.is-success",
+                        "Save changes"
+                    ),
+                ])
+            ])
+        ])
+    }
 }
 
 m.route(root, "/", {

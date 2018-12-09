@@ -605,10 +605,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var root = document.querySelector('.app');
 var Data = {
-  addModel: {
+  addModal: {
     display: false
   },
-  CardModel: {
+  cardModal: {
     display: false
   },
   current_pvt: __WEBPACK_IMPORTED_MODULE_3_dayjs___default()(),
@@ -706,7 +706,7 @@ var List = {
       });
     }), __WEBPACK_IMPORTED_MODULE_2_mithril___default()('button.button.is-fullwidth.is-small', {
       onclick: function onclick() {
-        Data.addModel.display = true;
+        Data.addModal.display = true;
       }
     }, "+")])]);
   }
@@ -720,15 +720,25 @@ var Card = {
 var AddModel = {
   view: function view(vnode) {
     return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal", {
-      class: "".concat(Data.addModel.display == true ? 'is-active' : '')
+      class: "".concat(Data.addModal.display == true ? 'is-active' : '')
     }, [__WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-background"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-card", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("header.modal-card-head", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("p.modal-card-title", "Modal title"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.delete[aria-label='close']", {
       onclick: function onclick() {
-        Data.addModel.display = false;
+        Data.addModal.display = false;
       }
     })]), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("section.modal-card-body"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("footer.modal-card-foot", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.button.is-success", "Save changes")])])]);
   }
 };
-var CardModel = {};
+var CardModel = {
+  view: function view(vnode) {
+    return __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal", {
+      class: "".concat(Data.cardModal.display == true ? 'is-active' : '')
+    }, [__WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-background"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()(".modal-card", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("header.modal-card-head", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("p.modal-card-title", "Modal title"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.delete[aria-label='close']", {
+      onclick: function onclick() {
+        Data.cardModal.display = false;
+      }
+    })]), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("section.modal-card-body"), __WEBPACK_IMPORTED_MODULE_2_mithril___default()("footer.modal-card-foot", [__WEBPACK_IMPORTED_MODULE_2_mithril___default()("button.button.is-success", "Save changes")])])]);
+  }
+};
 __WEBPACK_IMPORTED_MODULE_2_mithril___default.a.route(root, "/", {
   "/": Panel
 });
